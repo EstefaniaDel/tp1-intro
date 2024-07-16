@@ -42,7 +42,14 @@ def ver_fecha(id,fecha):
     else:
         return jsonify({"error": "torneo no encontrado"}), 404
 
-
+@app.route('/obtener_jugadores/<id>')
+def obtener_jugadores(id):
+    try:
+        jugadores = Jugador.query.filter_by(id_equipo = id).all()
+        return jsonify(jugadores)
+    except:
+        return jsonify({"error" : "jugadores no encontrados"})
+    
 if __name__ == '__main__':
 
     app.run(debug=True)
