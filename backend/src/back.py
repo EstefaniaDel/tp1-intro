@@ -31,13 +31,12 @@ def ver_fecha(id,fecha):
     if partidos:
         lista_partidos =[]
         for partido in partidos:
-            goles = ResultadoPartido.query.filter_by(id_partido = partido.id).first()
             equipo1 = Equipo.query.get(partido.id_equipo1)
             equipo2 = Equipo.query.get(partido.id_equipo2)
             lista_partidos.append({"equipo1": equipo1.nombre,
                                   "equipo2" : equipo2.nombre, 
-                                  "goles1" : goles.goles1, 
-                                  "goles2" : goles.goles2} )
+                                  "goles1" : equipo1.goles1, 
+                                  "goles2" : equipo2.goles2} )
         return jsonify(lista_partidos)
     else:
         return jsonify({"error": "torneo no encontrado"}), 404
