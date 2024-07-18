@@ -42,6 +42,14 @@ def ver_fecha(id,fecha):
     else:
         return jsonify({"error": "torneo no encontrado"}), 404
 
+@app.route('/cantidad_equipos/<id>')
+def cantidad_equipos(id):
+    try:
+        torneo = Torneo.query.get(id)
+        return jsonify({"cantidad": torneo.cantidad_equipos, "auxiliares" : torneo.guardar_jugadores})
+    except:
+        return jsonify({"error": "torneo no encontrado"}), 404
+
 @app.route('/obtener_jugadores/<id>')
 def obtener_jugadores(id):
     try:
