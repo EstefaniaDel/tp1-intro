@@ -54,6 +54,7 @@ class Partido(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     id_torneo = db.Column(db.Integer, db.ForeignKey('torneos.id'), nullable=False)
+    fecha = db.Column(db.Integer, nullable=False)
     id_equipo1 = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
     id_equipo2 = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
     goles1 = db.Column(db.Integer)
@@ -69,3 +70,4 @@ class Gol(db.Model):
     id_jugador = db.Column(db.Integer, db.ForeignKey('jugadores.id'), nullable=False)
     id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
     id_torneo = db.Column(db.Integer, db.ForeignKey('torneos.id'), nullable=False)
+

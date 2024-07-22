@@ -27,7 +27,7 @@ def ver_torneo(id):
     
 @app.route('/ver_fecha/<id>/<fecha>')
 def ver_fecha(id,fecha):
-    partidos = Partido.query.filter_by(id_torneo=id).all()
+    partidos = Partido.query.filter_by(id_torneo=id, fecha = fecha).all()
     if partidos:
         lista_partidos =[]
         for partido in partidos:
@@ -35,8 +35,9 @@ def ver_fecha(id,fecha):
             equipo2 = Equipo.query.get(partido.id_equipo2)
             lista_partidos.append({"equipo1": equipo1.nombre,
                                   "equipo2" : equipo2.nombre, 
-                                  "goles1" : equipo1.goles1, 
-                                  "goles2" : equipo2.goles2} )
+                                  "goles1" : partido.goles1, 
+                                  "goles2" : partido.goles2,
+                                  "id_partido" : partido.id} )
         return jsonify(lista_partidos)
     else:
         return jsonify({"error": "torneo no encontrado"}), 404
