@@ -61,7 +61,7 @@ def obtener_jugadores(id):
 #funcion de armado de cruces
 def generar_fechas(id):
     cantidad_equipos = Partido.query.filter(Partido.id_torneo == id).count()
-    equipos = list(range(1, cantidad_equipos+1))
+    equipos = Equipo.query.filter_by(id_torneo = id).all()
     calendario = []
 
     for i in range(cantidad_equipos-1):
