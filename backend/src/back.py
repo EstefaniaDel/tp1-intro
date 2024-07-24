@@ -58,6 +58,26 @@ def obtener_jugadores(id):
     except:
         return jsonify({"error" : "jugadores no encontrados"})
     
+#funcion de armado de cruces
+def generar_fechas(id):
+    cantidad_equipos = Partido.query.filter(Partido.id_torneo == id).count()
+    equipos = list(range(1, cantidad_equipos+1))
+    calendario = []
+
+    for i in range(cantidad_equipos-1):
+        fecha = []
+        mid = cantidad_equipos // 2
+        L1 = equipos[:mid]
+        L2 = equipos[mid:]
+        L2.reverse()
+        fecha.append(list(zip(L1, L2)))
+        equipos.insert(1, equipos.pop())
+        calendario.append(fecha)
+    for fecha_num, partidos_fecha in enumerate(calendario):
+        for match in partidos_fecha[0]:
+            partido = Partido(fecha=fecha_num+1, id_equipo1=match[0], id_equipo2=match[1])
+            db.session.add(partido)
+    db.session.commit()
 if __name__ == '__main__':
 
     app.run(debug=True)
