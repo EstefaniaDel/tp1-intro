@@ -81,7 +81,23 @@ def crear_resultados(id_eq):
     db.session.add(nuevos_resultados)
     db.session.commit()
 
-
+@app.route('/crear_equipo', methods = ["POST"])
+def crear_equipo():
+    datos_equipo = request.json
+    nuevo_equipo = Equipo()
+    nuevo_equipo.nombre = datos_equipo.get("nombre")
+    nuevo_equipo.id_torneo = datos_equipo.get("torneo")
+    try:
+        db.session.add(nuevo_equipo)
+        db.session.commit()
+        id_equipo = nuevo_equipo.id
+        crear_resultados(id_equipo)
+        jugadores = datos_equipo.get("jugadores")
+        if jugadores:
+            crear_jugadores(jugadores,id_equipo)
+        return jsonify({"id equipo" : id_equipo})
+    except:
+        return jsonify({"error": "equipo no creado"}), 404
     
 #funcion de armado de cruces
 def generar_fechas(id):
