@@ -97,28 +97,38 @@ def crear_equipo():
             crear_jugadores(jugadores,id_equipo)
         return jsonify({"id equipo" : id_equipo})
     except:
-        return jsonify({"error": "equipo no creado"}), 404
+        return jsonify({"error": "equipo no creado"}), 404
     
-#funcion de armado de cruces
+@app.route('/generar_fechas/<id>')
 def generar_fechas(id):
-    cantidad_equipos = Partido.query.filter(Partido.id_torneo == id).count()
-    equipos = Equipo.query.filter_by(id_torneo = id).all()
-    calendario = []
-
-    for i in range(cantidad_equipos-1):
-        fecha = []
-        mid = cantidad_equipos // 2
-        L1 = equipos[:mid]
-        L2 = equipos[mid:]
-        L2.reverse()
-        fecha.append(list(zip(L1, L2)))
-        equipos.insert(1, equipos.pop())
-        calendario.append(fecha)
-    for fecha_num, partidos_fecha in enumerate(calendario):
-        for match in partidos_fecha[0]:
-            partido = Partido(fecha=fecha_num+1, id_equipo1=match[0], id_equipo2=match[1])
-            db.session.add(partido)
-    db.session.commit()
+    try:
+        torneo = db.session.get(Torneo,id)
+        cantidad_equipos = torneo.cantidad_equipos
+        equipos = list(map(lambda x : x.id,torneo.equipos))
+        calendario = []
+        for _ in range(cantidad_equipos-1):
+            fecha = []
+            mid = cantidad_equipos // 2
+            L1 = equipos[:mid]
+            L2 = equipos[mid:]
+            L2.reverse()
+            fecha.append(list(zip(L1, L2)))
+            equipos.insert(1, equipos.pop())
+            calendario.append(fecha)
+        for fecha_num, partidos_fecha in enumerate(calendario):
+            for match in partidos_fecha[0]:
+                partido = Partido(id_torneo = id, fecha=fecha_num+1, id_equipo1=match[0], id_equipo2=match[1])
+                db.session.add(partido)
+        if torneo.tipo_torneo == 2:
+            calendario.reverse()
+            for fecha_num, partidos_fecha in enumerate(calendario):
+                for match in partidos_fecha[0]:
+                    partido = Partido(id_torneo = id, fecha=len(calendario)+fecha_num+1, id_equipo1=match[1], id_equipo2=match[0])
+                    db.session.add(partido)
+        db.session.commit()
+        return jsonify(calendario)
+    except Exception as e:
+        return jsonify({"error":e})
 if __name__ == '__main__':
 
     app.run(debug=True)
