@@ -57,6 +57,31 @@ def obtener_jugadores(id):
         return jsonify(jugadores)
     except:
         return jsonify({"error" : "jugadores no encontrados"})
+
+@app.route('/ver_extras/<id>')
+def ver_extras(id):
+    try:
+        torneo = db.session.get(Torneo,id)
+        return jsonify({"cantidad": torneo.cantidad_equipos, "doble" : torneo.tipo_torneo, "guardar" : torneo.guardar_jugadores, "goleadores" : torneo.goleadores, "asistentes" : torneo.asistentes})
+    except:
+        return jsonify({"error": "torneo no encontrado"}), 404
+
+def crear_jugadores(jugadores, id_equipo):
+    for jugador in jugadores:
+        nuevo_jugador = Jugador()
+        nuevo_jugador.goles = 0
+        nuevo_jugador.asistencias = 0
+        nuevo_jugador.id_equipo = id_equipo
+        nuevo_jugador.nombre = jugador
+        db.session.add(nuevo_jugador)
+    db.session.commit()
+
+def crear_resultados(id_eq):
+    nuevos_resultados = Resultado(victorias = 0, derrotas = 0, empates = 0, goles = 0, en_contra = 0, id_equipo = id_eq)
+    db.session.add(nuevos_resultados)
+    db.session.commit()
+
+
     
 #funcion de armado de cruces
 def generar_fechas(id):
