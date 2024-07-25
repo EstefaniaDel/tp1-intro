@@ -77,5 +77,81 @@ def delete_torneo(torneo_id):
         logging.error(f"Error al eliminar el torneo: {e}")
         return jsonify({"Error": "No se pudo eliminar el torneo"}), 500
 
+# CRUD para Equipo
+@app.route('/equipos', methods=['GET'])
+def obtener_equipos():
+    try:
+        equipos = Equipo.query.all()
+        lista_equipos = [{"id": equipo.id, "nombre": equipo.nombre, "id_torneo": equipo.id_torneo} for equipo in equipos]
+        return jsonify(lista_equipos)
+    except Exception as e:
+        logging.error(f"Error al obtener equipos: {e}")
+        return jsonify({"Error": "Equipos no encontrados"}), 404
+
+@app.route('/equipo/<int:equipo_id>', methods=['GET'])
+def obtener_equipo(equipo_id):
+    try:
+        equipo = Equipo.query.get(equipo_id)
+        if not equipo:
+            return jsonify({"Error": "Equipo no encontrado"}), 404
+        
+        return jsonify({
+            "id": equipo.id,
+            "nombre": equipo.nombre,
+            "id_torneo": equipo.id_torneo
+        })
+    except Exception as e:
+        logging.error(f"Error al obtener equipo: {e}")
+        return jsonify({"Error": "Equipo no encontrado"}), 404
+
+@app.route('/equipo/nuevo', methods=['POST'])
+def nuevo_equipo():
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"Error": "No se proporcionaron datos"}), 400
+        
+        nombre = data.get('nombre')
+        id_torneo = data.get('id_torneo')
+
+        if not nombre or not id_torneo:
+            return jsonify({"Error": "Datos incompletos"}), 400
+        
+        nuevo_equipo = Equipo(nombre=nombre, id_torneo=id_torneo)
+        db.session.add(nuevo_equipo)
+        db.session.commit()
+        return jsonify({"mensaje": "Equipo creado exitosamente"}), 201
+    except Exception as e:
+        logging.error(f"Error al crear el equipo: {e}")
+        return jsonify({"Error": "No se pudo crear el equipo"}), 500
+
+@app.route('/equipo/<int:equipo_id>', methods=['PATCH'])
+def editar_equipo(equipo_id):
+    try:
+        equipo = Equipo.query.get_or_404(equipo_id)
+        data = request.get_json()
+        # equipo.nombre = request.form['nombre']
+        # equipo.id_torneo = request.form['id_torneo']
+        if 'nombre' in data:
+            equipo.nombre = data['nombre']
+        if 'id_torneo' in data:
+            equipo.id_torneo = data['id_torneo']
+        db.session.commit()
+        return jsonify({"mensaje": "Equipo editado exitosamente"}), 200
+    except Exception as e:
+        logging.error(f"Error al editar el equipo: {e}")
+        return jsonify({"Error": "No se pudo editar el equipo"}), 500
+
+@app.route('/equipo/<int:equipo_id>', methods=['DELETE'])
+def eliminar_equipo(equipo_id):
+    try:
+        equipo = Equipo.query.get_or_404(equipo_id)
+        db.session.delete(equipo)
+        db.session.commit()
+        return jsonify({"mensaje": "Equipo eliminado exitosamente"}), 200
+    except Exception as e:
+        logging.error(f"Error al eliminar el equipo: {e}")
+        return jsonify({"Error": "No se pudo eliminar el equipo"}), 500
+    
 if __name__ == '__main__':
     app.run(debug=True)
