@@ -235,5 +235,87 @@ def eliminar_jugador(jugador_id):
         logging.error(f"Error al eliminar el jugador: {e}")
         return jsonify({"Error": "No se pudo eliminar el jugador"}), 500
     
+# CRUD para Asistente
+@app.route('/asistentes', methods=['GET'])
+def obtener_asistentes():
+    try:
+        asistentes = Asistente.query.all()
+        lista_asistentes = [{"id": asistente.id, "nombre": asistente.nombre, "id_partido": asistente.id_partido, "id_equipo": asistente.id_equipo, "id_jugador": asistente.id_jugador} for asistente in asistentes]
+        return jsonify(lista_asistentes)
+    except Exception as e:
+        logging.error(f"Error al obtener asistentes: {e}")
+        return jsonify({"Error": "Asistentes no encontrados"}), 404
+
+@app.route('/asistente/<int:asistente_id>', methods=['GET'])
+def obtener_asistente(asistente_id):
+    try:
+        asistente = Asistente.query.get(asistente_id)
+        if not asistente:
+            return jsonify({"Error": "Asistente no encontrado"}), 404
+        return jsonify({
+            "id": asistente.id,
+            "nombre": asistente.nombre,
+            "id_partido": asistente.id_partido,
+            "id_equipo": asistente.id_equipo,
+            "id_jugador": asistente.id_jugador
+        })
+    except Exception as e:
+        logging.error(f"Error al obtener asistente: {e}")
+        return jsonify({"Error": "Asistente no encontrado"}), 404
+
+@app.route('/asistente/nuevo', methods=['POST'])
+def nuevo_asistente():
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"Error": "No se proporcionaron datos"}), 400
+        
+        nombre = data.get('nombre')
+        id_partido = data.get('id_partido')
+        id_equipo = data.get('id_equipo')
+        id_jugador = data.get('id_jugador')
+
+        if not nombre or not id_partido or not id_equipo or not id_jugador:
+            return jsonify({"Error": "Datos incompletos"}), 400
+        
+        nuevo_asistente = Asistente(nombre=nombre, id_partido=id_partido, id_equipo=id_equipo, id_jugador=id_jugador)
+        db.session.add(nuevo_asistente)
+        db.session.commit()
+        return jsonify({"mensaje": "Asistente creado exitosamente"}), 201
+    except Exception as e:
+        logging.error(f"Error al crear el asistente: {e}")
+        return jsonify({"Error": "No se pudo crear el asistente"}), 500
+
+@app.route('/asistente/<int:asistente_id>', methods=['PATCH'])
+def editar_asistente(asistente_id):
+    try:
+        asistente = Asistente.query.get_or_404(asistente_id)
+        data = request.get_json()
+        if 'nombre' in data:
+            asistente.nombre = data['nombre']
+        if 'id_partido' in data:
+            asistente.id_partido = data['id_partido']
+        if 'id_equipo' in data:
+            asistente.id_equipo = data['id_equipo']
+        if 'id_jugador' in data:
+            asistente.id_jugador = data['id_jugador']
+
+        db.session.commit()
+        return jsonify({"mensaje": "Asistente editado exitosamente"}), 200
+    except Exception as e:
+        logging.error(f"Error al editar el asistente: {e}")
+        return jsonify({"Error": "No se pudo editar el asistente"}), 500
+
+@app.route('/asistente/<int:asistente_id>', methods=['DELETE'])
+def eliminar_asistente(asistente_id):
+    try:
+        asistente = Asistente.query.get_or_404(asistente_id)
+        db.session.delete(asistente)
+        db.session.commit()
+        return jsonify({"mensaje": "Asistente eliminado exitosamente"}), 200
+    except Exception as e:
+        logging.error(f"Error al eliminar el asistente: {e}")
+        return jsonify({"Error": "No se pudo eliminar el asistente"}), 500
+
 if __name__ == '__main__':
     app.run(debug=True)
