@@ -1,0 +1,6 @@
+table{
+    color: white;
+}
+table, td {
+    border: 1px solid white;
+  }
