@@ -1,7 +1,14 @@
-body {
-    background-color: #f8f9fa;
+.bienvenida{
+    margin-top: 100px;
+    text-align: center;
+    
+}
+.bienvenida h1{
+    color: white;
+}
+.bienvenida p{
+    margin-inline: 200px;
+    color: grey;
+    margin-bottom: 40px;
 }
 
-h1 {
-    color: #343a40;
-}
