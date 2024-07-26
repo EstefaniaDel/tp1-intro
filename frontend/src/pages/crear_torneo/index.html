@@ -1,0 +1,118 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMBRE</title>
+    <link rel="stylesheet" href="../../../base.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../imagenes/th3.png" sizes="32x32">
+</head>
+    <body>
+        <header>
+            <div class="header">
+                <img src="../imagenes/th3.png" class="logo">
+                <nav>
+                <ul class="redirecciones"> 
+                    <li class="direcciones"><a class="link" href="../principal/pagina_principal.html">Inicio</a></li>
+                    <li class="direcciones"><a class="link" href="crear_torneo.html">Crear competencia</a></li>
+                    <li class="direcciones"><a class="link" href="#section3">Preguntas frecuentes</a></li>
+                </ul> 
+            </nav> 
+            </div>
+        </header>
+        <div class="formulario">
+            <h1>Personalizá tu torneo</h1>
+            <h3>Creá tu competición con las caracteristicas que necesites</h3>
+            <div>
+                <h4>Nombre del Torneo:</h4>
+                <input id = "nombre" placeholder="Ingrese el nombre del torneo...">
+            </div>
+            <div>
+                <h4>Formato:</h4>
+                <input type= "radio" name="formato" value="1" checked>
+                <label>Ida</label><br><br>
+                <input type="radio" name="formato" value="2">
+                <label>Ida y Vuelta</label><br>
+            </div>
+            <div>
+                <h4>Número de equipos:<h4>
+                <select id="equipos" name="equipos">
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="22">22</option>
+                    <option value="24">24</option>
+                    <option value="26">26</option>
+                    <option value="28">28</option>
+                    <option value="30">30</option>
+                </select>
+             </div>
+            <div>
+                <h4>Opciones:</h4>
+                <input type="checkbox" name="opciones" id="nombres" value="jugadores">
+                <label>Nombres jugadores</label><br><br>
+                <input type="checkbox" name="opciones" id="goleadores" value="tabla_goleadores">
+                <label>Tabla goleadores</label><br><br>
+                <input type="checkbox" name="opciones" id="asistentes" value="tabla_asistentes">
+                <label>Tabla asistentes</label><br><br>
+            </div>    
+            </div>
+            <button class="botones" onclick="enviar()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                      </svg></button>
+            <script>
+                function request_error(error) {
+                    console.log("ERROR");
+                    console.log(error);
+                    alert(error);
+                }
+
+                function exito(data){
+                    console.log(data);
+                    alert("torneo creado con exito");
+                    window.location.href = `http://localhost:8000/prueba?id=${data.id}`;
+                }
+
+                function enviar(){
+                    formato = document.querySelector('input[name="formato"]:checked').value;
+                    cantidad = document.getElementById("equipos").value;
+                    nombres = document.querySelectorAll('input[name="opciones"]:checked');
+                    torneo = document.getElementById("nombre").value;
+                    const datos = {
+                        formato : parseInt(formato),
+                        equipos : parseInt(cantidad),
+                        nombre : torneo,
+                        jugadores : 0,
+                        goleadores : 0,
+                        asistentes : 0
+                    }
+                    for (let i = 0; i<nombres.length;i++){
+                        aux = nombres[i].value;
+                        if (aux === "jugadores"){
+                            datos.jugadores = 1;
+                        } else if(aux == "tabla_goleadores"){
+                            datos.goleadores = 1;
+                        } else if(aux == "tabla_asistentes"){
+                            datos.asistentes = 1;
+                        }
+                    }
+                    fetch("http://localhost:5000/crear_torneo",{
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datos)
+                    })
+                    .then((res) => res.json())
+                    .then(exito)
+                    .catch(request_error)
+                }
+        </script>
+    </body>
+</html>
