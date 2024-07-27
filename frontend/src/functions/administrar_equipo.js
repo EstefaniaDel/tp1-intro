@@ -17,7 +17,7 @@ function base_tabla(partido){
 
 function subir_jugador(){
     let datos = document.getElementById("nuevo").value;
-    document.getElementById("agregar jugador").innerHTML = "";
+    document.getElementById("agregar_jugador").innerHTML = "";
     document.getElementById("jugadores").innerHTML = "";
     fetch(`http://localhost:5000/crear_jugador/${id}`,{
     method: `POST`,
@@ -32,7 +32,7 @@ function subir_jugador(){
 }
 
 function agregar_jugador(){
-    let agregar_jugador = document.getElementById("agregar jugador");
+    let agregar_jugador = document.getElementById("agregar_jugador");
     if (agregar_jugador.innerHTML === ""){
         let input = document.createElement("input");
         input.placeholder = "Ingrese un jugador";
@@ -56,6 +56,7 @@ function crear_jugadores(jugadores){
     goles.textContent = "Goles";
     asistencias.textContent = "Asistencias";
     for( let i = 0; i<jugadores.length;i++){
+        let fila_jugador = div_jugadores.insertRow(-1);
         let nombre_jugador = fila_jugador.insertCell(0);
         let goles_jugador = fila_jugador.insertCell(1);
         let asistencias_jugador = fila_jugador.insertCell(2);
@@ -63,7 +64,7 @@ function crear_jugadores(jugadores){
         nombre_jugador.textContent = jugadores[i].nombre;
         goles_jugador.textContent = jugadores[i].goles;
         asistencias_jugador.textContent = jugadores[i].asistencias;
-        botones.appendChild(document,createElement("button"));
+        botones.appendChild(document.createElement("button"));
     }
     let div_boton = document.getElementById("agregar");
     let boton = document.createElement("button");

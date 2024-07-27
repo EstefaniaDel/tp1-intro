@@ -25,20 +25,22 @@ function subir_resultado(){
         goles : []
     }
     const goleadores1 = document.querySelectorAll('select[name="goleadoresequipo1"]');
-    for (let i = 0; i<goleadores1.length;i++){
-        datos.goles.push({goleador : goleadores1[i].value});
-    }
     const asistentes1 = document.querySelectorAll('select[name="asistentesequipo1"]');
-    for (let i = 0; i<asistentes1.length;i++){
-        datos.goles.push({asistente : asistentes1[i].value});
+    for (let i = 0; i<goleadores1.length;i++){
+        var dic = {
+            goleador : goleadores1[i].value,
+            asistente : asistentes1[i].value
+        }
+        datos.goles.push(dic)
     }
     const goleadores2 = document.querySelectorAll('select[name="goleadoresequipo2"]');
-    for (let i = 0; i<goleadores2.length;i++){
-        datos.goles.push({goleador : goleadores2[i].value});
-    }
     const asistentes2 = document.querySelectorAll('select[name="asistentesequipo2"]');
-    for (let i = 0; i<asistentes2.length;i++){
-        datos.goles.push({asistente : asistentes2[i].value});
+    for (let i = 0; i<goleadores2.length;i++){
+        var dic = {
+            goleador : goleadores2[i].value,
+            asistente : asistentes2[i].value
+        }
+        datos.goles.push(dic)
     }
     console.log(datos)
     fetch("http://localhost:5000/editar_partido" ,{
@@ -118,7 +120,9 @@ function agregar_gol(esLocal){
     }
     let fila = select.insertRow(-1);
     let gol = fila.insertCell(0);
+    let asistencia = fila.insertCell(1)
     gol.appendChild(crear_select(equipo));
+    asistencia.appendChild(crear_select_asistencia(equipo))
     actualizar_gol();
 }
 
@@ -149,9 +153,23 @@ function mostrar_partido(partido){
     resultado.appendChild(goles);
     visitante.appendChild(equipo2);
     let tabla_select_l = document.createElement("table");
+    let fila_l = tabla_select_l.insertRow(-1)
+    let gol_l = fila_l.insertCell(0)
+    let asistencia_l = fila_l.insertCell(1)
+    gol_l.innerHTML = "Goles"
+    asistencia_l.innerHTML = "Asistencia"
     tabla_select_l.id = "select_local";
     let tabla_select_v = document.createElement("table");
+    let fila_v = tabla_select_v.insertRow(-1)
+    let gol_v = fila_v.insertCell(0)
+    let asistencia_v = fila_v.insertCell(1)
+    gol_v.innerHTML = "Goles"
+    asistencia_v.innerHTML = "Asistencia"
     tabla_select_v.id = "select_visitante";
+    gol_l.classList.add("tabla_izq")
+    gol_v.classList.add("tabla_izq")
+    asistencia_l.classList.add("tabla_der")
+    asistencia_v.classList.add("tabla_der")
     local.appendChild(tabla_select_l);
     visitante.appendChild(tabla_select_v);
 }
