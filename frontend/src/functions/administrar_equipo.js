@@ -7,7 +7,7 @@ function request_error(error) {
     alert(error);
 }
 
-function base_table(partido){
+function base_tabla(partido){
     let cabecera = document.createElement("table");
     let fila =cabecera.insertRow(-1);
     let celda = fila.insertCell(0);
@@ -95,7 +95,7 @@ function crear_tabla(partidos){
 function mostrar_equipo(equipo){
     let div_equipo = document.getElementById("equipo");
     div_equipo.innerHTML = equipo.nombre;
-    crear_tabla(equipo.partido);
+    crear_tabla(equipo.partidos);
     if (equipo.jugadores.length !== 0){
         crear_jugadores(equipo.jugadores);
     }

@@ -73,7 +73,7 @@ function verificar_caso(){
     sleep(500);
     crear_cruces();
     alert("equipos creados con exito");
-    window.location.href = `http://localhost:8000/administrar_torneo?id=${id}`;
+    window.location.href = `http://localhost:8000/src/pages/administrar_torneo?id=${id}`;
   }
 }
 

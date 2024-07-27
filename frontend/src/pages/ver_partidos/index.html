@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tres Estrellas</title>
+    <title>NOMBRE</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../../base.css">
     <link rel="icon" href="../imagenes/th3.png" sizes="32x32">
@@ -20,12 +20,13 @@
             </nav> 
             </div>
         </header>
-        <div  id = "formulario">
-            <table id = "partido"></table><br>
-        </div>    
-        <button class = "botones" id = "subir" onclick="subir_resultado()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+        <button onclick="volver()", class = "antiguas"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
           </svg></button>
-        <script src = "../../functions/editar_partido.js"></script>          
+        <div id ="formulario">  
+        <div id = "fechas"></div>
+        <div id = "tablas"></div>
+        </div>
+        <script src = "../../functions/ver_partidos.js"></script>
     </body>
 </html>

@@ -2,19 +2,19 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 function redireccion(){
-  window.location.href = `http://localhost:8000/ver_partidos?id=${id}`;
+  window.location.href = `http://localhost:8000/src/pages/ver_partidos?id=${id}`;
 }
 
 function crear_link(nombre_equipo,id_equipo){
   let nombre = document.createElement("a");
-  nombre.href = `http://localhost:8000/administrar_equipos?id=${id_equipo}`;
+  nombre.href = `http://localhost:8000/src/pages/administrar_equipo?id=${id_equipo}`;
   nombre.classList.add("link");
   nombre.innerText = nombre_equipo;
   return nombre;
 }
 
 function crear_tabla(equipos) {
-  var table = document.getElementById("myTable");
+  var table = document.getElementById("tabla");
   equipos.sort(function(a,b){return a.diferencia>b.diferencia?-1:1});
   equipos.sort(function(a,b){return (b.puntos) - (a.puntos)});
   for (let i = 0 ; i< equipos.length;i++){
