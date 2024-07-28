@@ -6,7 +6,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 if (id === null) {
-  window.location.href = "http://localhost:8000/crear_torneo";
+  window.location.href = "http://localhost:5000/crear_torneo";
 }
 
 function request_error(error) {
@@ -73,7 +73,7 @@ function verificar_caso(){
     sleep(500);
     crear_cruces();
     alert("equipos creados con exito");
-    window.location.href = `http://localhost:8000/src/pages/administrar_torneo?id=${id}`;
+    window.location.href = `http://localhost:5000/src/pages/administrar_torneo?id=${id}`;
   }
 }
 

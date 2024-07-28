@@ -4,7 +4,7 @@ const id = params.get("id");
 var mostrar_goleadores;
 
 function volver(){
-    window.location.href = `http://localhost:8000/src/pages/administrar_torneo?id=${id}`;
+    window.location.href = `http://localhost:5000/src/pages/administrar_torneo?id=${id}`;
 }
 
 function base_tabla(partido){
@@ -17,9 +17,9 @@ function base_tabla(partido){
 
 function editar_partido(id_partido){
     if (mostrar_goleadores === 0){
-        window.location.href = `http://localhost:8000/src/pages/editar_partido?id=${id_partido}`;
+        window.location.href = `http://localhost:5000/src/pages/editar_partido?id=${id_partido}`;
     } else {
-        window.location.href = `http://localhost:8000/src/pages/editar_partido_jugadores?id=${id_partido}`;
+        window.location.href = `http://localhost:5000/src/pages/editar_partido_jugadores?id=${id_partido}`;
     }
 }
 

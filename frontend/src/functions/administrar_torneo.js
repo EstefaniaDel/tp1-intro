@@ -2,12 +2,12 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 function redireccion(){
-  window.location.href = `http://localhost:8000/src/pages/ver_partidos?id=${id}`;
+  window.location.href = `http://localhost:5000/src/pages/ver_partidos?id=${id}`;
 }
 
 function crear_link(nombre_equipo,id_equipo){
   let nombre = document.createElement("a");
-  nombre.href = `http://localhost:8000/src/pages/administrar_equipo?id=${id_equipo}`;
+  nombre.href = `http://localhost:5000/src/pages/administrar_equipo?id=${id_equipo}`;
   nombre.classList.add("link");
   nombre.innerText = nombre_equipo;
   return nombre;

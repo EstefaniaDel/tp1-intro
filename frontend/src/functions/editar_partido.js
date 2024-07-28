@@ -12,7 +12,7 @@ function request_error(error) {
 function redireccion(data){
     console.log(data);
     alert("Resultado modificado con exito");
-    window.location.href = `http://localhost:8000/src/pages/ver_partidos?id=${id_torneo}`;
+    window.location.href = `http://localhost:5000/src/pages/ver_partidos?id=${id_torneo}`;
 }
 
 function subir_resultado(){
