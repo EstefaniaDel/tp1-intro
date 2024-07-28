@@ -1,42 +1,40 @@
-#formulario{
-    margin-top: 75px;
-    text-align: center;
-    padding: 40px;
-    color: white;
-    background-color: #313131;
-    margin-left: 500px;
-    width: 750px;
-    border-radius: 30px;
-
+#formulario {
+  margin-top: 75px;
+  text-align: center;
+  padding: 40px;
+  color: white;
+  background-color: #313131;
+  margin-left: 500px;
+  width: 750px;
+  border-radius: 30px;
 }
 
-#boton{
-    margin-left: 590px;
+#boton {
+  margin-left: 590px;
 }
 
-#subir{
-    margin-left: 1260px;
+#subir {
+  margin-left: 1260px;
 }
 
-.crear_nombre{
-    font-size: 50px;
-    
+.crear_nombre {
+  font-size: 50px;
 }
 
-.crear_nombre input{
-    height: 50px;
-    width: 400px;
-    font-size: 20px;
+.crear_nombre input {
+  height: 50px;
+  width: 400px;
+  font-size: 20px;
 }
 
-.crear_jugadores{
-    text-align: left;
+.crear_jugadores {
+  text-align: left;
 }
 
-.crear_jugadores #jugadores{
-    display: flex;
-    flex-wrap: wrap;
+.crear_jugadores #jugadores {
+  display: flex;
+  flex-wrap: wrap;
 }
-.crear_jugadores #jugadores div{
-    margin-inline: 90px;
+.crear_jugadores #jugadores div {
+  margin-inline: 90px;
 }
