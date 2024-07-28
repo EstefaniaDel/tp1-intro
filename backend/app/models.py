@@ -6,88 +6,81 @@ class Torneo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre_torneo = db.Column(db.String(100), nullable=False)
     tipo_torneo = db.Column(db.Integer, nullable=False)
+    cantidad_equipos = db.Column(db.Integer, nullable=False)
+    guardar_jugadores = db.Column(db.Integer, nullable=False)
+    goleadores = db.Column(db.Integer, nullable=False)
+    asistentes = db.Column(db.Integer, nullable=False)
 
-    equipos = db.relationship('Equipo', backref='torneo', lazy=True)
-    partidos = db.relationship('Partido', backref='torneo', lazy=True)
+    equipos = db.relationship('Equipo', backref='torneo', cascade='all, delete-orphan')
+    partidos = db.relationship('Partido', backref='torneo', cascade='all, delete-orphan')
 
 class Equipo(db.Model):
     __tablename__ = 'equipos'
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    id_torneo = db.Column(db.Integer, db.ForeignKey('torneos.id'), nullable=False)
+    id_torneo = db.Column(db.Integer, db.ForeignKey('torneos.id', ondelete='CASCADE'), nullable=False)
 
-    # resultados = db.relationship('Resultado', backref='equipo', lazy=True)
-    jugadores = db.relationship('Jugador', backref='equipo', lazy=True)
-    # goles = db.relationship('Gol', backref='equipo', lazy=True)
-    # asistentes = db.relationship('Asistente', backref='equipo', lazy=True)
+    resultados = db.relationship('Resultado', backref='equipo', cascade='all, delete-orphan')
+    jugadores = db.relationship('Jugador', backref='equipo', cascade='all, delete-orphan')
+    partidos_local = db.relationship('Partido', backref='equipo_local', foreign_keys='Partido.id_equipo1')
+    partidos_visitante = db.relationship('Partido', backref='equipo_visitante', foreign_keys='Partido.id_equipo2')
+class Resultado(db.Model):
+    __tablename__ = 'resultados'
 
-# class Resultado(db.Model):
-#     __tablename__ = 'resultados'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     victorias = db.Column(db.Integer, nullable=False)
-#     empates = db.Column(db.Integer, nullable=False)
-#     derrotas = db.Column(db.Integer, nullable=False)
-#     goles = db.Column(db.Integer, nullable=False)
-#     en_contra = db.Column(db.Integer, nullable=False)
-#     id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    victorias = db.Column(db.Integer, nullable=False, default=0)
+    empates = db.Column(db.Integer, nullable=False, default=0)
+    derrotas = db.Column(db.Integer, nullable=False, default=0)
+    goles = db.Column(db.Integer, nullable=False, default=0)
+    en_contra = db.Column(db.Integer, nullable=False, default=0)
+    id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id', ondelete='CASCADE'), nullable=False)
 
 class Jugador(db.Model):
     __tablename__ = 'jugadores'
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    goles = db.Column(db.Integer, nullable=True)
-    asistencias = db.Column(db.Integer, nullable=False)
-    id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
+    goles = db.Column(db.Integer, nullable=False, default=0)
+    asistencias = db.Column(db.Integer, nullable=False, default=0)
+    id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id', ondelete='CASCADE'), nullable=False)
 
-    # goles = db.relationship('Gol', backref='jugador', lazy=True)
-    asistentes = db.relationship('Asistente', backref='jugador', lazy=True)
+    goles_marcados = db.relationship('Gol', backref='goleador', foreign_keys='Gol.id_jugador')
+    asistencias_dadas = db.relationship('Gol', backref='asistente', foreign_keys='Gol.id_asistencia')
 
 class Partido(db.Model):
     __tablename__ = 'partidos'
 
     id = db.Column(db.Integer, primary_key=True)
-    id_torneo = db.Column(db.Integer, db.ForeignKey('torneos.id'), nullable=False)
-    id_equipo1 = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
-    id_equipo2 = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
+    id_torneo = db.Column(db.Integer, db.ForeignKey('torneos.id', ondelete='CASCADE'), nullable=False)
+    fecha = db.Column(db.Integer, nullable=False)
+    id_equipo1 = db.Column(db.Integer, db.ForeignKey('equipos.id', ondelete='CASCADE'), nullable=False)
+    id_equipo2 = db.Column(db.Integer, db.ForeignKey('equipos.id', ondelete='CASCADE'), nullable=False)
+    goles1 = db.Column(db.Integer, default=None)
+    goles2 = db.Column(db.Integer, default=None)
 
+    goles = db.relationship('Gol', backref='partido', cascade='all, delete-orphan')
+    asistentes = db.relationship('Asistente', backref='partido', cascade='all, delete-orphan')
     equipo1 = db.relationship('Equipo', foreign_keys=[id_equipo1])
     equipo2 = db.relationship('Equipo', foreign_keys=[id_equipo2])
-    asistentes = db.relationship('Asistente', backref='partido', lazy=True)
 
-# class Gol(db.Model):
-#     __tablename__ = 'goles'
+class Gol(db.Model):
+    __tablename__ = 'goles'
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     id_jugador = db.Column(db.Integer, db.ForeignKey('jugadores.id'), nullable=False)
-#     id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
-#     id_torneo = db.Column(db.Integer, db.ForeignKey('torneos.id'), nullable=False)
-
-# class ResultadoPartido(db.Model):
-#     __tablename__ = 'resultado'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     id_partido = db.Column(db.Integer, db.ForeignKey('partidos.id'), nullable=False)
-#     goles1 = db.Column(db.Integer)
-#     goles2 = db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key=True)
+    id_jugador = db.Column(db.Integer, db.ForeignKey('jugadores.id', ondelete='CASCADE'), nullable=False)
+    id_asistencia = db.Column(db.Integer, db.ForeignKey('jugadores.id', ondelete='SET NULL'), nullable=True)
+    id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id', ondelete='CASCADE'), nullable=False)
+    id_partido = db.Column(db.Integer, db.ForeignKey('partidos.id', ondelete='CASCADE'), nullable=False)
 
 class Asistente(db.Model):
     __tablename__ = 'asistentes'
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    id_partido = db.Column(db.Integer, db.ForeignKey('partidos.id'), nullable=False)
-    id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id'), nullable=False)
-    id_jugador = db.Column(db.Integer, db.ForeignKey('jugadores.id'), nullable=False)
+    id_partido = db.Column(db.Integer, db.ForeignKey('partidos.id', ondelete='CASCADE'), nullable=False)
+    id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id', ondelete='CASCADE'), nullable=False)
+    id_jugador = db.Column(db.Integer, db.ForeignKey('jugadores.id', ondelete='CASCADE'), nullable=False)
 
-    equipo = db.relationship('Equipo', backref='asistentes', lazy=True)
-
-# class Goleadores(db.Model):
-#     __tablename__ = 'goleadores'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     id_jugador = db.Column(db.Integer, db.ForeignKey('jugadores.id'), nullable=False)
-#     id_torneo = db.Column(db.Integer, db.ForeignKey('torneos.id'), nullable=False)
-#     goles = db.Column(db.Integer, nullable=False)
+    equipo = db.relationship('Equipo', backref='asistentes')
+    jugador = db.relationship('Jugador', backref='asistencias_partido')
