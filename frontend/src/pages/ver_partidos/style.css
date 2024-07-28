@@ -1,54 +1,53 @@
-table{
-    color: white;
-    width: 350px;
-    text-align: center;
+table {
+  color: white;
+  width: 350px;
+  text-align: center;
 }
 
-
-table, td {
-    border: 1px solid white;
-  }
-
-#tablas{
-    display: inline-block;
+table,
+td {
+  border: 1px solid white;
 }
 
-#formulario{
-    margin-top: 75px;
-    text-align: center;
-    padding: 40px;
-    color: white;
-    background-color: #313131;
-    margin-left: 500px;
-    width: 750px;
-    border-radius: 30px;
-    
+#tablas {
+  display: inline-block;
 }
 
-#fechas{
-   text-align: left; 
-   margin-left: 10px;
+#formulario {
+  margin-top: 75px;
+  text-align: center;
+  padding: 40px;
+  color: white;
+  background-color: #313131;
+  margin-left: 500px;
+  width: 750px;
+  border-radius: 30px;
 }
 
-#formulario .botones{
-    padding: 0;
-    height: 30px;
-    width: 30px;
-    margin: 0px;
-    border-radius: 10px;
-    border: white;
-    border-style: solid;
-    border-width: 2px;
+#fechas {
+  text-align: left;
+  margin-left: 10px;
 }
 
-#formulario #tablas{
-    display: flex;
-    justify-content: space-between; 
-    flex-wrap: wrap;
-    margin-inline: 10px;
+#formulario .botones {
+  padding: 0;
+  height: 30px;
+  width: 30px;
+  margin: 0px;
+  border-radius: 10px;
+  border: white;
+  border-style: solid;
+  border-width: 2px;
 }
- 
-.nombres_equipos{
-    width: 100px;
-    height: 30px;
+
+#formulario #tablas {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-inline: 10px;
+}
+
+.nombres_equipos {
+  width: 100px;
+  height: 30px;
 }

@@ -1,56 +1,127 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tres Estrellas</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="../../../base.css">
-        <link rel="icon" href="../../../public/img/logo.png" sizes="32x32">
-    </head>
-    <body>
-        <header>
-            <div class="header">
-                <img src="../../../public/img/logo.png" class="logo">
-                <nav>
-                    <ul class="redirecciones">
-                        <li class="direcciones"><a class="link" href="http://localhost:5000/">Inicio</a></li>
-                        <li class="direcciones"><a class="link" href="http://localhost:5000/src/pages/crear_torneo/">Crear competencia</a></li>
-                        <li class="direcciones"><a class="link" href="#section3">Preguntas frecuentes</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <div id = "formulario">
-            <div id = "local">
-                <button class = "botones" onclick="agregar_gol(true)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
-                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
-                  </svg></button>
-                <button class = "botones" onclick="eliminar_gol(true)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill-dash" viewBox="0 0 16 16">
-                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
-                  </svg></button>
-                <h1>LOCAL</h1>
-            </div>
-            <div id = "resultados">
-                <br><br>
-                <h1>RESULTADO</h1>
-            </div>
-            <div id = "visitante">
-                <button class = "botones"class = "botones" onclick="agregar_gol(false)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
-                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
-                  </svg></button>
-                <button class = "botones" onclick="eliminar_gol(false)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill-dash" viewBox="0 0 16 16">
-                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
-                  </svg></button>
-                <h1>VISITANTE</h1>
-            </div>
-        </div>
-            <button id = "subir" class = "botones" onclick="subir_resultado()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-              </svg></button>
-        <script src = "../../functions/editar_partido_jugadores.js"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tres Estrellas</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="icon" href="../../../public/img/logo.png" sizes="32x32" />
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <img src="../../../public/img/logo.png" class="logo" />
+        <nav>
+          <ul class="redirecciones">
+            <li class="direcciones">
+              <a class="link" href="http://localhost/">Inicio</a>
+            </li>
+            <li class="direcciones">
+              <a class="link" href="http://localhost/src/pages/crear_torneo/"
+                >Crear competencia</a
+              >
+            </li>
+            <li class="direcciones">
+              <a class="link" href="#section3">Preguntas frecuentes</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div id="formulario">
+      <div id="local">
+        <button class="botones" onclick="agregar_gol(true)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-person-fill-add"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+            />
+            <path
+              d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"
+            />
+          </svg>
+        </button>
+        <button class="botones" onclick="eliminar_gol(true)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-person-fill-dash"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+            />
+            <path
+              d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"
+            />
+          </svg>
+        </button>
+        <h1>LOCAL</h1>
+      </div>
+      <div id="resultados">
+        <br /><br />
+        <h1>RESULTADO</h1>
+      </div>
+      <div id="visitante">
+        <button class="botones" class="botones" onclick="agregar_gol(false)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-person-fill-add"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+            />
+            <path
+              d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"
+            />
+          </svg>
+        </button>
+        <button class="botones" onclick="eliminar_gol(false)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-person-fill-dash"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+            />
+            <path
+              d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"
+            />
+          </svg>
+        </button>
+        <h1>VISITANTE</h1>
+      </div>
+    </div>
+    <button id="subir" class="botones" onclick="subir_resultado()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        fill="currentColor"
+        class="bi bi-check-lg"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
+        />
+      </svg>
+    </button>
+    <script src="../../functions/editar_partido_jugadores.js"></script>
+  </body>
 </html>
