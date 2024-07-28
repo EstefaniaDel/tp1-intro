@@ -1,14 +1,12 @@
-.bienvenida{
-    margin-top: 100px;
-    text-align: center;
-    
+.bienvenida {
+  margin-top: 100px;
+  text-align: center;
 }
-.bienvenida h1{
-    color: white;
+.bienvenida h1 {
+  color: white;
 }
-.bienvenida p{
-    margin-inline: 200px;
-    color: grey;
-    margin-bottom: 40px;
+.bienvenida p {
+  margin-inline: 200px;
+  color: grey;
+  margin-bottom: 40px;
 }
-

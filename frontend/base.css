@@ -1,55 +1,64 @@
-header{
-    background-color: #313131; 
-    padding: 10px; 
-    height: 50px;}
-.logo{
-    width: 50px;
-}
-.header{
-    display: flex; 
-    justify-content: space-between; 
+header {
+  background-color: #313131;
+  padding: 10px;
+  height: 50px;
 }
 
-.redirecciones{
-    list-style: none;
+.logo {
+  width: 50px;
 }
 
-.direcciones{
-    display: inline;
-    margin-right: 50px;
+.header {
+  display: flex;
+  justify-content: space-between;
 }
 
-.link{
-    color: white;
-    text-decoration: none;
+.redirecciones {
+  list-style: none;
 }
 
-body{
-    background-color: #202123;
-    margin: 0; 
-} 
+.direcciones {
+  display: inline;
+  margin-right: 50px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+body {
+  background-color: #202123;
+  margin: 0;
+}
 
 .botones {
-    border: #28c3b8;
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    font-size: 20px;
-    background-color: #28c3b8; 
-    color: #ffffff; 
-    border-radius: 50px; 
-    margin-right: 50px;
+  /* border: #28c3b8; */
+  border: #1789b9;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  /* background-color: #28c3b8;  */
+  background-color: #1789b9;
+  color: #ffffff;
+  border-radius: 50px;
+  margin-right: 50px;
 }
 
 .antiguas {
-    border: #444444;
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    font-size: 20px;
-    background-color: #444444; 
-    color: #ffffff; 
-    border-radius: 50px; 
+  border: #444444;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  background-color: #444444;
+  color: #ffffff;
+  border-radius: 50px;
+}
+
+.ml-3 {
+  margin-left: 5rem; /* Puedes ajustar el valor según tus necesidades */
 }
