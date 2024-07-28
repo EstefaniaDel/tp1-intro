@@ -1,20 +1,19 @@
-.formulario{
-    margin-top: 75px;
-    text-align: center;
-    padding: 40px;
-    color: white;
-    background-color: #313131;
-    margin-left: 500px;
-    width: 750px;
-    border-radius: 30px;
-     
+.formulario {
+  margin-top: 75px;
+  text-align: center;
+  padding: 40px;
+  color: white;
+  background-color: #313131;
+  margin-left: 500px;
+  width: 750px;
+  border-radius: 30px;
 }
 
-.formulario div{
-    text-align: left;
-    margin-left: 75px; 
+.formulario div {
+  text-align: left;
+  margin-left: 75px;
 }
 
 .botones {
-    margin-left: 1255px;
+  margin-left: 1255px;
 }
