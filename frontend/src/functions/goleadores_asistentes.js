@@ -17,7 +17,7 @@ function cambiar_seleccion(){
     let seleccion = document.getElementById("elegir_tabla").value
     let tabla = document.getElementById("tabla")
     tabla.innerHTML = ""
-    tabla.className = "table table-dark table-striped"; // Añadir clases de Bootstrap
+    tabla.className = "table table-dark table-striped";
     let base = tabla.insertRow(-1)
     let nombre_celda = base.insertCell(0)
     let equipo_celda = base.insertCell(1)
@@ -80,7 +80,7 @@ function procesar(datos){
     .then(buscar_equipos)
     .catch(request_error)
     if (datos.guardar === 0 || (datos.goleadores == 0 && datos.asistentes ===0)){
-        alert("Torneo sin equipos")
+        alert("Torneo sin goleadores ni asistentes")
         window.location.href = `http://localhost/src/pages/administrar_torneo?id=${id}`
     }
     let elegir_jugadores = document.getElementById("elegir_tabla")

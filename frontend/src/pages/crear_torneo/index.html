@@ -183,6 +183,9 @@
             datos.asistentes = 1;
           }
         }
+        if ((datos.goleadores === 1 || datos.asistentes === 1) && datos.guardar_jugadores === 0){
+          datos.guardar_jugadores = 1
+        }
         fetch("http://localhost:5000/torneo/", {
           method: "POST",
           headers: {
