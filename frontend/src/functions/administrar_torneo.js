@@ -5,6 +5,9 @@ function redireccion() {
   window.location.href = `http://localhost/src/pages/ver_partidos?id=${id}`;
 }
 
+function redireccion2() {
+  window.location.href = `http://localhost/src/pages/goleadores_asistentes?id=${id}`;
+}
 function crear_link(nombre_equipo, id_equipo) {
   let nombre = document.createElement("a");
   nombre.href = `http://localhost/src/pages/administrar_equipo?id=${id_equipo}`;
