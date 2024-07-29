@@ -1,0 +1,8 @@
+# Dockerfile para nginx
+
+FROM nginx:alpine
+
+# Usa el volumen montado en lugar de copiar archivos en el Dockerfile
+# COPY ./frontend /usr/share/nginx/html
+
+EXPOSE 80
