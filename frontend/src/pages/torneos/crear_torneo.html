@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Torneo</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Crear Torneo</h1>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form id="crearTorneoForm">
+            <div class="form-group">
+              <label for="nombreTorneo">Nombre del Torneo:</label>
+              <input
+                type="text"
+                id="nombreTorneo"
+                class="form-control"
+                placeholder="Nombre del Torneo"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="tipoTorneo">Tipo del Torneo:</label>
+              <input
+                type="text"
+                id="tipoTorneo"
+                class="form-control"
+                placeholder="Tipo del Torneo"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Crear Torneo
+            </button>
+            <a
+              href="../../../index.html"
+              class="btn btn-secondary btn-block mt-3"
+              >Volver a la Página Principal</a
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../functions/torneos.js"></script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tres Estrellas</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="icon" href="./public/img/logo.png" sizes="32x32" />
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <img src="./public/img/logo.png" class="logo" />
+        <nav>
+          <ul class="redirecciones">
+            <li class="direcciones">
+              <a class="link" href="http://localhost/">Inicio</a>
+            </li>
+            <li class="direcciones">
+              <a class="link" href="http://localhost/src/pages/crear_torneo/"
+                >Crear competencia</a
+              >
+            </li>
+            <li class="direcciones">
+              <a class="link" href="http://localhost/src/pages/FAQ/">Preguntas frecuentes</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="formulario">
+      <div class="bienvenida">
+        <h1>Creá tus torneos y gestionalo de la manera más simple</h1>
+        <p>
+          ¡Bienvenido a Tres Estrellas! La plataforma más cómoda para la creación y
+          gestión de torneos. Organiza competiciones de fútbol amateur. Con
+          nuestra interfaz intuitiva, puedes diseñar torneos personalizados,
+          gestionar inscripciones, programar partidos, seguir el progreso de los
+          equipos y compartir resultados en tiempo real. Simplifica la
+          organización de eventos deportivos y lleva tus torneos al siguiente
+          nivel con Tres Estrellas.
+        </p>
+          <button onclick="redireccion()" class="botones">
+            CREAR COMPETENCIA
+          </button>
+          <button onclick="redireccion2()" class="antiguas">
+            COMPETENCIAS ANTERIORES
+          </button>
+      </div>
+    </div>
+
+    </div>
+      
+    <script>
+      function redireccion() {
+        window.location.href = "http://localhost/src/pages/crear_torneo";
+      }
+      function redireccion2() {
+        window.location.href = "http://localhost/src/pages/ver_torneos";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tres Estrellas</title>
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link rel="icon" href="../../../public/img/logo.png" sizes="32x32" />
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <img src="../../../public/img/logo.png" class="logo" />
+        <nav>
+          <ul class="redirecciones">
+            <li class="direcciones">
+              <a class="link" href="http://localhost/">Inicio</a>
+            </li>
+            <li class="direcciones">
+              <a class="link" href="http://localhost/src/pages/crear_torneo/"
+                >Crear competencia</a
+              >
+            </li>
+            <li class="direcciones">
+              <a class="link" href="http://localhost/src/pages/FAQ/">Preguntas frecuentes</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="formulario">
+      <h1>Personalizá tu torneo</h1>
+      <h3>Creá tu competición con las caracteristicas que necesites</h3>
+      <div>
+        <h4>Nombre del Torneo:</h4>
+        <input id="nombre" placeholder="Ingrese el nombre del torneo..." />
+      </div>
+      <div>
+        <h4>Formato:</h4>
+        <input type="radio" name="formato" value="1" checked />
+        <label>Ida</label><br /><br />
+        <input type="radio" name="formato" value="2" />
+        <label>Ida y Vuelta</label><br />
+      </div>
+      <div>
+        <h4>Número de equipos:</h4>
+        <select id="equipos" name="equipos">
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="12">12</option>
+          <option value="14">14</option>
+          <option value="16">16</option>
+          <option value="18">18</option>
+          <option value="20">20</option>
+          <option value="22">22</option>
+          <option value="24">24</option>
+          <option value="26">26</option>
+          <option value="28">28</option>
+          <option value="30">30</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <h4>Opciones:</h4>
+        <div class="form-check">
+          <input
+            type="checkbox"
+            name="opciones"
+            id="nombres"
+            value="jugadores"
+            class="form-check-input"
+          />
+          <label class="form-check-label">Nombres jugadores</label>
+        </div>
+        <div class="form-check">
+          <input
+            type="checkbox"
+            name="opciones"
+            id="goleadores"
+            value="tabla_goleadores"
+            class="form-check-input"
+          />
+          <label class="form-check-label">Tabla goleadores</label>
+        </div>
+        <div class="form-check">
+          <input
+            type="checkbox"
+            name="opciones"
+            id="asistentes"
+            value="tabla_asistentes"
+            class="form-check-input"
+          />
+          <label class="form-check-label">Tabla asistentes</label>
+        </div>
+      </div>
+      <div
+        style="
+          margin-top: 2rem;
+          display: flex;
+          justify-content: right;
+          margin-left: auto;
+        "
+      >
+        <div style="display: flex; justify-content: flex-end;">
+          <button class="antiguas" onclick="volver()">
+        <i class="bi bi-arrow-return-left"></i> Atras
+          </button>
+          <button class="botones" style="margin-left: 1rem" onclick="enviar()">
+        <i class="bi bi-check2"></i> Crear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function request_error(error) {
+        console.log("ERROR");
+        console.log(error);
+        Swal.fire({
+          title: "Error",
+          text: error,
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+
+      function exito(data) {
+        console.log(data);
+        Swal.fire({
+          title: "Éxito",
+          text: "Torneo creado con éxito",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = `http://localhost/src/pages/crear_equipos?id=${data.id}`;
+          }
+        });
+      }
+
+      function enviar() {
+        const torneo = document.getElementById("nombre").value;
+
+        if (!torneo) {
+          Swal.fire({
+            title: "Error",
+            text: "El nombre del torneo no puede estar vacío.",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+          return;
+        }
+
+        const formato = document.querySelector(
+          'input[name="formato"]:checked'
+        ).value;
+        const cantidad = document.getElementById("equipos").value;
+        const nombres = document.querySelectorAll(
+          'input[name="opciones"]:checked'
+        );
+
+        const datos = {
+          nombre_torneo: torneo,
+          tipo_torneo: parseInt(formato),
+          cantidad_equipos: parseInt(cantidad),
+          guardar_jugadores: 0,
+          goleadores: 0,
+          asistentes: 0,
+        };
+        for (let i = 0; i < nombres.length; i++) {
+          const aux = nombres[i].value;
+          if (aux === "jugadores") {
+            datos.guardar_jugadores = 1;
+          } else if (aux === "tabla_goleadores") {
+            datos.goleadores = 1;
+          } else if (aux === "tabla_asistentes") {
+            datos.asistentes = 1;
+          }
+        }
+        if ((datos.goleadores === 1 || datos.asistentes === 1) && datos.guardar_jugadores === 0){
+          datos.guardar_jugadores = 1
+        }
+        fetch("http://localhost:5000/torneo/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(datos),
+        })
+          .then((res) => res.json())
+          .then(exito)
+          .catch(request_error);
+      }
+
+      function volver() {
+        window.history.back();
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
