@@ -12,7 +12,11 @@ if (id === null) {
 function request_error(error) {
   console.log("ERROR");
   console.log(error);
-  alert(error);
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: error,
+  });
 }
 
 function equipo_creado(data) {
@@ -72,8 +76,13 @@ function verificar_caso() {
   } else {
     sleep(500);
     crear_cruces();
-    alert("Equipos creados con exito");
-    window.location.href = `http://localhost/src/pages/administrar_torneo?id=${id}`;
+    Swal.fire({
+      icon: 'success',
+      title: 'Éxito',
+      text: 'Equipos creados con éxito',
+    }).then(() => {
+      window.location.href = `http://localhost/src/pages/administrar_torneo?id=${id}`;
+    });
   }
 }
 

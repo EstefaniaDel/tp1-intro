@@ -8,13 +8,22 @@ var golesVisitante = 0;
 function request_error(error) {
   console.log("ERROR");
   console.log(error);
-  alert(error);
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: error
+  });
 }
 
 function redireccion(data) {
   console.log(data);
-  alert("Resultado modificado con exito!");
-  window.location.href = `http://localhost/src/pages/ver_partidos?id=${id_torneo}`;
+  Swal.fire({
+    icon: 'success',
+    title: 'Éxito',
+    text: 'Resultado modificado con éxito!'
+  }).then(() => {
+    window.location.href = `http://localhost/src/pages/ver_partidos?id=${id_torneo}`;
+  });
 }
 
 function subir_resultado() {
