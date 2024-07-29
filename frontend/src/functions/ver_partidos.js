@@ -24,8 +24,9 @@ function editar_partido(id_partido) {
 }
 
 function boton_editar_partido(id_partido) {
-  let boton = document.createElement("button");
-  boton.textContent = "Editar partido";
+  let boton = document.createElement("boton");
+  boton.innerHTML = `<button type="button" class="btn btn-primary" onclick="editar_partido(id_partido)"> <i class="bi bi-pencil-square"></i> Editar
+  </button>`;
   boton.onclick = function () {
     editar_partido(id_partido);
   };
@@ -101,7 +102,8 @@ function buscar_fecha(fecha) {
 }
 
 function crear_fechas(torneo) {
-  let fechas = document.getElementById("fechas");
+  let fechas = document.getElementById("fechaSelect");
+  fechas.innerHTML = "";
   let cant_fechas;
   if (torneo.doble === 1) {
     cant_fechas = torneo.cantidad - 1;
@@ -109,12 +111,9 @@ function crear_fechas(torneo) {
     cant_fechas = torneo.cantidad * 2 - 2;
   }
   for (let i = 1; i <= cant_fechas; i++) {
-    let opcion = document.createElement("button");
-    opcion.textContent = i;
-    opcion.classList.add("botones");
-    opcion.onclick = function () {
-      buscar_fecha(i);
-    };
+    let opcion = document.createElement("option");
+    opcion.value = i;
+    opcion.textContent = "Fecha " + i;
     fechas.appendChild(opcion);
   }
   buscar_fecha(1);
