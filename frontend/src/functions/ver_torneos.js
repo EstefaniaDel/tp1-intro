@@ -1,3 +1,11 @@
+function crear_link_torneo(id_torneo,nombre_torneo){
+  let nombre = document.createElement("a");
+  nombre.href = `http://localhost/src/pages/administrar_torneo?id=${id_torneo}`;
+  nombre.classList.add("link");
+  nombre.innerText = nombre_torneo;
+  return nombre;
+}
+
 function procesar(data) {
   console.log(data);
   const tablaTorneos = document.getElementById("tablaTorneos");
@@ -5,7 +13,7 @@ function procesar(data) {
     let torneo = data[i];
     let fila = tablaTorneos.insertRow(-1);
     let nombre = fila.insertCell(0);
-    nombre.innerHTML = torneo.nombre;
+    nombre.appendChild(crear_link_torneo(torneo.id,torneo.nombre));
     let celda_cantidad = fila.insertCell(1);
     celda_cantidad.innerHTML = torneo.cantidad;
     let celda_guardar = fila.insertCell(2);

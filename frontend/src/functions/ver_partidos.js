@@ -1,6 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
+var mostrar_asistentes;
 var mostrar_goleadores;
 
 function volver() {
@@ -16,7 +17,7 @@ function base_tabla(partido) {
 }
 
 function editar_partido(id_partido) {
-  if (mostrar_goleadores === 0) {
+  if (mostrar_goleadores === 0 && mostrar_asistentes === 0) {
     window.location.href = `http://localhost/src/pages/editar_partido?id=${id_partido}`;
   } else {
     window.location.href = `http://localhost/src/pages/editar_partido_jugadores?id=${id_partido}`;
@@ -121,6 +122,7 @@ function crear_fechas(torneo) {
 
 function seleccionar_formato(extras) {
   mostrar_goleadores = extras.goleadores;
+  mostrar_asistentes = extras.asistentes;
   crear_fechas(extras);
 }
 
