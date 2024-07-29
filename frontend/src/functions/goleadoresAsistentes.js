@@ -76,7 +76,7 @@ function procesar(datos){
     .catch(request_error)
     if (datos.guardar === 0 || (datos.goleadores == 0 && datos.asistentes ===0)){
         alert("Torneo sin equipos")
-        window.location.href = `http://localhost/administrar_torneo?id=${id}`
+        window.location.href = `http://localhost/src/pages/administrar_torneo?id=${id}`
     }
     let elegir_jugadores = document.getElementById("elegir_tabla")
     if (datos.goleadores === 1){
