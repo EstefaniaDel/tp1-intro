@@ -9,10 +9,15 @@ function request_error(error) {
     alert(error);
 }
 
+function volver() {
+    window.location.href = `http://localhost/src/pages/administrar_torneo?id=${id}`;
+}
+
 function cambiar_seleccion(){
     let seleccion = document.getElementById("elegir_tabla").value
     let tabla = document.getElementById("tabla")
     tabla.innerHTML = ""
+    tabla.className = "table table-dark table-striped"; // Añadir clases de Bootstrap
     let base = tabla.insertRow(-1)
     let nombre_celda = base.insertCell(0)
     let equipo_celda = base.insertCell(1)

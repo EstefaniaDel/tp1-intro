@@ -1,30 +1,63 @@
 <html>
-	<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tres Estrellas</title>
-        <link rel="stylesheet" href="../../../base.css">
-        <!-- <link rel="stylesheet" href="style.css"> -->
-        <link rel="icon" href="../../../public/img/logo.png" sizes="32x32">
-	</head>
-	<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tres Estrellas</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="icon" href="../../../public/img/logo.png" sizes="32x32" />
+  </head>
+  <body>
     <header>
       <div class="header">
-          <img src="../../../public/img/logo.png" class="logo">
-          <nav>
-            <ul class="redirecciones"> 
-              <li class="direcciones"><a class="link" href="../principal/pagina_principal.html">Inicio</a></li>
-              <li class="direcciones"><a class="link" href="../crear_torneo/crear_torneo.html">Crear competencia</a></li>
-              <li class="direcciones"><a class="link" href="#section3">Preguntas frecuentes</a></li>
-            </ul> 
-          </nav> 
+        <img src="../../../public/img/logo.png" class="logo" />
+        <nav>
+          <ul class="redirecciones">
+            <li class="direcciones">
+              <a class="link" href="../principal/pagina_principal.html"
+                >Inicio</a
+              >
+            </li>
+            <li class="direcciones">
+              <a class="link" href="../crear_torneo/crear_torneo.html"
+                >Crear competencia</a
+              >
+            </li>
+            <li class="direcciones">
+              <a class="link" href="http://localhost/src/pages/FAQ/">Preguntas frecuentes</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
-    <select id = "elegir_tabla" onchange="cambiar_seleccion()" >
-        <option disabled selected>Selecciona una opción</option>
-    </select>
-    <table id="tabla">
-      </table>
-      <script src="../../functions/goleadoresAsistentes.js"></script>
-	</body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <h2 class="mb-2">Goleadores y Asistentes</h2>
+          <div class="d-flex align-items-center mb-4">
+            <select
+              id="elegir_tabla"
+              class="form-select me-2"
+              onchange="cambiar_seleccion()"
+              style="width: auto"
+            >
+              <option disabled selected>Selecciona una opción</option>
+              <!-- Las opciones se agregarán dinámicamente -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <table id="tabla" class="table table-dark table-striped d-flex flex-wrap justify-content-center"></table>
+      <button class="antiguas" style="margin-top: 20px; margin-left: 50rem;" onclick="volver()">
+        <i class="bi bi-arrow-return-left"></i>
+        Volver
+      </button>
+    </div>
+    
+    <script src="../../functions/goleadoresAsistentes.js"></script>
+  </body>
 </html>
