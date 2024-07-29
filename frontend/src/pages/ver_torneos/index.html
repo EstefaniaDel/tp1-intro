@@ -3,8 +3,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tres Estrellas</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
     <link rel="stylesheet" href="../../../base.css" />
     <link rel="stylesheet" href="../../../style.css" />
+
     <link rel="icon" href="../../../public/img/logo.png" sizes="32x32" />
   </head>
   <body>
@@ -15,7 +24,7 @@
           <ul class="redirecciones">
             <li class="direcciones">
               <a class="link" href="http://localhost/">Inicio</a>
-            </li>
+            </li> 
             <li class="direcciones">
               <a class="link" href="http://localhost/src/pages/crear_torneo/"
                 >Crear competencia</a
@@ -28,16 +37,31 @@
         </nav>
       </div>
     </header>
-    <table id="tabla">
-      <tr>
-        <th>Torneo</th>
-        <th>Cantidad Equipos</th>
-        <th>Guarda Jugadores</th>
-        <th>Tabla Goleadores</th>
-        <th>Tabla Asistentes</th>
-        <th></th>
-      </tr>
-    </table>
+    <div>
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <table
+              class="table table-dark table-striped tabla-clara"
+              id="tabla"
+            >
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Torneo</th>
+                  <th scope="col">Jugadores</th>
+                  <th scope="col">Goleadores</th>
+                  <th scope="col">Asistentes</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaTorneos"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="../../functions/ver_torneos.js"></script>
   </body>
 </html>

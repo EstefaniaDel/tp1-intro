@@ -31,39 +31,47 @@
         </nav>
       </div>
     </header>
-    <div>
-      <div class="container mt-5">
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <table
-              class="table table-dark table-striped tabla-clara"
-              id="tabla"
-            >
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Equipo</th>
-                  <th scope="col">Puntos</th>
-                  <th scope="col">Partidos Jugados</th>
-                  <th scope="col">Partidos Ganados</th>
-                  <th scope="col">Partidos Empatados</th>
-                  <th scope="col">Partidos Perdidos</th>
-                  <th scope="col">Goles a Favor</th>
-                  <th scope="col">Goles en Contra</th>
-                  <th scope="col">Diferencia</th>
-                </tr>
-              </thead>
-              <tbody id="tablaEquipos"></tbody>
-            </table>
-          </div>
+    <div class="container">
+      
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <h2 class="mt-2">Administrar Torneo</h2>
+          <table
+            class="table table-dark table-striped tabla-clara text-center"
+            id="tabla"
+          >
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Equipo</th>
+                <th scope="col">Puntos</th>
+                <th scope="col">Partidos Jugados</th>
+                <th scope="col">Partidos Ganados</th>
+                <th scope="col">Partidos Empatados</th>
+                <th scope="col">Partidos Perdidos</th>
+                <th scope="col">Goles a Favor</th>
+                <th scope="col">Goles en Contra</th>
+                <th scope="col">Diferencia</th>
+              </tr>
+            </thead>
+            <tbody id="tablaEquipos"></tbody>
+          </table>
         </div>
+      </div>
 
+      <div class="text-center">
         <button
-          class="btn btn-primary botones"
-          style="margin-left: 55rem"
+          class="botones"
           onclick="redireccion()"
         >
-          Ver Partidos
+          Partidos
+        </button>
+
+        <button
+          class="botones"
+          onclick="redireccion2()"
+        >
+          Resultados
         </button>
       </div>
     </div>
@@ -122,5 +130,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="../../functions/administrar_torneo.js"></script>
+    <script src="../../functions/goleadoresAsistentes.js"></script>
   </body>
 </html>
