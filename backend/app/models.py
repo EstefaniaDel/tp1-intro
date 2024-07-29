@@ -60,7 +60,6 @@ class Partido(db.Model):
     goles2 = db.Column(db.Integer, default=None)
 
     goles = db.relationship('Gol', backref='partido', cascade='all, delete-orphan')
-    asistentes = db.relationship('Asistente', backref='partido', cascade='all, delete-orphan')
     equipo1 = db.relationship('Equipo', foreign_keys=[id_equipo1])
     equipo2 = db.relationship('Equipo', foreign_keys=[id_equipo2])
 
@@ -73,14 +72,3 @@ class Gol(db.Model):
     id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id', ondelete='CASCADE'), nullable=False)
     id_partido = db.Column(db.Integer, db.ForeignKey('partidos.id', ondelete='CASCADE'), nullable=False)
 
-class Asistente(db.Model):
-    __tablename__ = 'asistentes'
-
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
-    id_partido = db.Column(db.Integer, db.ForeignKey('partidos.id', ondelete='CASCADE'), nullable=False)
-    id_equipo = db.Column(db.Integer, db.ForeignKey('equipos.id', ondelete='CASCADE'), nullable=False)
-    id_jugador = db.Column(db.Integer, db.ForeignKey('jugadores.id', ondelete='CASCADE'), nullable=False)
-
-    equipo = db.relationship('Equipo', backref='asistentes')
-    jugador = db.relationship('Jugador', backref='asistencias_partido')

@@ -1,7 +1,7 @@
 from backend.app.utils import borrar_partido, crear_jugadores, crear_resultados, guardar_goleadores, sumar_partido, ver_jugadores
 from flask import request, jsonify
 from backend.app import app, db
-from backend.app.models import Asistente, Equipo, Jugador, Partido, Torneo, Gol, Resultado
+from backend.app.models import Equipo, Jugador, Partido, Torneo, Gol
 import logging
 
 # CRUD para Torneos
